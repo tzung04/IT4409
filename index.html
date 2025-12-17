@@ -40,6 +40,7 @@
   <body>
     <div id="root"></div>
     <script type="text/babel">
+      const baseUrl = 'https://it4409-backend-crud.onrender.com/';
       function App() {
         // States
         const [users, setUsers] = React.useState([]);
@@ -53,7 +54,7 @@
 
         // Fetch users
         const fetchUsers = () => {
-          const url = `http://localhost:3002/api/users?page=${page}&limit=${limit}&search=${search}`;
+          const url = `${baseUrl}/api/users?page=${page}&limit=${limit}&search=${search}`;
 
           fetch(url)
             .then((res) => res.json())
@@ -67,7 +68,7 @@
 
         // Hàm xóa (được di chuyển vào trong App để gọi fetchUsers)
         const deleteUser = (id) => {
-            fetch(`http://localhost:3002/api/users/${id}`, {
+            fetch(`${baseUrl}/api/users/${id}`, {
             method: "DELETE"
             })
             .then(res => res.json())
@@ -277,8 +278,8 @@
           if (!validate(cleanData)) return;
 
           const url = user
-            ? `http://localhost:3002/api/users/${user._id}`
-            : `http://localhost:3002/api/users`;
+            ? `${baseUrl}/api/users/${user._id}`
+            : `${baseUrl}/api/users`;
           const method = user ? "PUT" : "POST";
 
           fetch(url, {
